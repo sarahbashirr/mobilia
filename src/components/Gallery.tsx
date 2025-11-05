@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Gallery.css';
 import project1 from '../images/project1.jpeg';
 import project2 from '../images/project2.jpeg';
