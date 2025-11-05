@@ -42,9 +42,9 @@ function Footer() {
           <div className="footer-section">
             <h4>Contact Info</h4>
             <ul>
-              <li>📞 (555) 123-4567</li>
-              <li>📧 info@woodcraftpainter.com</li>
-              <li>📍 Greater Metro Area</li>
+              <li>📞 (03) 447 984</li>
+              <li>📧 sarahbashir2005@gmail.com</li>
+              <li>📍 Beirut</li>
             </ul>
           </div>
         </div>
