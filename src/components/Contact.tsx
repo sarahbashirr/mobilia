@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Contact.css';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
+
+
 
 function Contact() {
   const [formData, setFormData] = useState({
@@ -21,21 +25,18 @@ function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to a backend or email service
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        projectType: '',
-        message: ''
-      });
-      setIsSubmitted(false);
-    }, 3000);
+    emailjs.send(
+      'service_lflzuwo',
+      'template_two1jpt', 
+      formData,
+      'IXjc_exI7fo9vr7zK'
+    )
+    .then(() => {
+      setIsSubmitted(true);
+    })
+    .catch((error) => {
+      console.error('Email send failed:', error);
+    });
   };
 
   return (
@@ -47,27 +48,21 @@ function Contact() {
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-card">
-              <div className="info-icon">📞</div>
+              <div className="info-icon"><FaPhoneAlt /></div>
               <h3>Phone</h3>
-              <p>(555) 123-4567</p>
+              <p>(03) 447 984</p>
             </div>
             
             <div className="info-card">
-              <div className="info-icon">📧</div>
+              <div className="info-icon"><FaEnvelope /></div>
               <h3>Email</h3>
-              <p>info@woodcraftpainter.com</p>
+              <p>sarahbashir2005@gmail.com</p>
             </div>
             
             <div className="info-card">
-              <div className="info-icon">📍</div>
+              <div className="info-icon"><FaMapMarkerAlt /></div>
               <h3>Location</h3>
-              <p>Serving the Greater Metro Area</p>
-            </div>
-
-            <div className="info-card">
-              <div className="info-icon">⏰</div>
-              <h3>Hours</h3>
-              <p>Mon-Fri: 8am - 6pm<br />Sat: 9am - 4pm</p>
+              <p>Beirut</p>
             </div>
           </div>
 
