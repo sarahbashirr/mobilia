@@ -27,10 +27,21 @@ function Contact() {
     e.preventDefault();
   
     // Send email to YOU (notification)
-    emailjs.send('service_lflzuwo', 'template_owner_notify', formData, 'IXjc_exI7fo9vr7zK');
-  
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_NOTIFY!,
+      formData,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+    );
+    
+    emailjs.send(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_REPLY!,
+      formData,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
+    )
+    
     // Send auto reply to USER
-    emailjs.send('service_lflzuwo', 'template_autoreply', formData, 'IXjc_exI7fo9vr7zK')
       .then(() => setIsSubmitted(true))
       .catch((err) => console.error('Email send failed:', err));
   };
