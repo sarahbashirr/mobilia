@@ -27,13 +27,21 @@ function Contact() {
     e.preventDefault();
 
     const serviceID = 'service_lflzuwo';
-    const autoReplyTemplate = 'template_0hl2ptl'; // ✅ Your new auto-reply template
+    const ownerTemplate = 'template_two1jpt'; // ✅ Sends message to YOU
+    const autoReplyTemplate = 'template_0hl2ptl'; // ✅ Sends auto-reply to the user
     const publicKey = 'IXjc_exI7fo9vr7zK';
 
+    // 1️⃣ Send email to YOU (owner)
     emailjs
-      .send(serviceID, autoReplyTemplate, formData, publicKey)
+      .send(serviceID, ownerTemplate, formData, publicKey)
       .then(() => {
-        console.log('✅ Auto-reply email sent successfully');
+        console.log('📩 Message sent to owner successfully');
+
+        // 2️⃣ Send auto-reply to the sender
+        return emailjs.send(serviceID, autoReplyTemplate, formData, publicKey);
+      })
+      .then(() => {
+        console.log('✅ Auto-reply sent successfully');
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -44,7 +52,7 @@ function Contact() {
         });
       })
       .catch((err) => {
-        console.error('❌ Auto-reply send failed:', err);
+        console.error('❌ Email sending failed:', err);
         alert('Something went wrong while sending your message. Please try again.');
       });
   };
