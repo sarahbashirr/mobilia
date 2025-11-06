@@ -14,6 +14,7 @@ function Contact() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  // 🔹 handle input changes
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -23,22 +24,43 @@ function Contact() {
     });
   };
 
+  // 🔹 handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     const serviceID = 'service_lflzuwo';
-    const ownerTemplate = 'template_two1jpt'; // ✅ Sends message to YOU
-    const autoReplyTemplate = 'template_0hl2ptl'; // ✅ Sends auto-reply to the user
+    const ownerTemplate = 'template_two1jpt'; // message to YOU
+    const autoReplyTemplate = 'template_0hl2ptl'; // auto reply to user
     const publicKey = 'IXjc_exI7fo9vr7zK';
 
-    // 1️⃣ Send email to YOU (owner)
+    // 1️⃣ Send email to the owner (you)
     emailjs
-      .send(serviceID, ownerTemplate, formData, publicKey)
+      .send(
+        serviceID,
+        ownerTemplate,
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          projectType: formData.projectType,
+          message: formData.message
+        },
+        publicKey
+      )
       .then(() => {
         console.log('📩 Message sent to owner successfully');
 
-        // 2️⃣ Send auto-reply to the sender
-        return emailjs.send(serviceID, autoReplyTemplate, formData, publicKey);
+        // 2️⃣ Send auto reply to user (must include user_email variable)
+        return emailjs.send(
+          serviceID,
+          autoReplyTemplate,
+          {
+            to_name: formData.name,
+            to_email: formData.email, // must match variable name in your EmailJS template
+            projectType: formData.projectType
+          },
+          publicKey
+        );
       })
       .then(() => {
         console.log('✅ Auto-reply sent successfully');
