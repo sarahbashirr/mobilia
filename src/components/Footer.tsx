@@ -15,7 +15,7 @@ function Footer() {
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3>WoodCraft Painter</h3>
+            <h3>Mobilia Works</h3>
             <p>Professional furniture painting and restoration services. Transforming pieces with expert craftsmanship and attention to detail.</p>
           </div>
 

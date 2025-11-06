@@ -17,7 +17,7 @@ function Header() {
       <div className="container">
         <div className="header-content">
           <div className="logo">
-            <h2>WoodCraft Painter</h2>
+            <h2>Mobilia Works</h2>
           </div>
           
           <button 

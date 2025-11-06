@@ -27,14 +27,13 @@ function Contact() {
     e.preventDefault();
 
     const serviceID = 'service_lflzuwo';
-    const templateID = 'template_two1jpt'; // ✅ Your actual template ID
+    const autoReplyTemplate = 'template_0hl2ptl'; // ✅ Your new auto-reply template
     const publicKey = 'IXjc_exI7fo9vr7zK';
 
-    // Send email to YOU (notification) and auto-reply to user
     emailjs
-      .send(serviceID, templateID, formData, publicKey)
+      .send(serviceID, autoReplyTemplate, formData, publicKey)
       .then(() => {
-        console.log('✅ Email sent successfully');
+        console.log('✅ Auto-reply email sent successfully');
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -45,7 +44,7 @@ function Contact() {
         });
       })
       .catch((err) => {
-        console.error('❌ Email send failed:', err);
+        console.error('❌ Auto-reply send failed:', err);
         alert('Something went wrong while sending your message. Please try again.');
       });
   };
@@ -82,7 +81,7 @@ function Contact() {
           <form className="contact-form" onSubmit={handleSubmit}>
             {isSubmitted && (
               <div className="success-message">
-                ✓ Thank you! We'll be in touch soon.
+                ✓ Thank you! We've sent you a confirmation email.
               </div>
             )}
 

@@ -21,70 +21,70 @@ interface GalleryItem {
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
 
-  const galleryItems = [
+  const galleryItems: GalleryItem[] = [
     {
       id: 1,
-      title: 'Project 1',
-      description: 'Description of your project',
+      title: 'Modern Bedroom Design',
+      description: 'A cozy bedroom featuring custom paint and elegant finishes that create a warm, inviting atmosphere.',
       category: 'Custom Paint',
       image: project1
     },
     {
       id: 2,
-      title: 'Project 2',
-      description: 'Description of your project',
+      title: 'Entrance Hall Transformation',
+      description: 'A beautifully restored home entrance that blends natural tones and textures for a welcoming first impression.',
       category: 'Restoration',
       image: project2
     },
     {
       id: 3,
-      title: 'Project 3',
-      description: 'Description of your project',
+      title: 'Office Refinishing Project',
+      description: 'A refined office space with a smooth, professional finish that enhances productivity and comfort.',
       category: 'Refinishing',
       image: project3
     },
     {
       id: 4,
-      title: 'Project 4',
-      description: 'Description of your project',
+      title: 'Executive Office Design',
+      description: 'A sleek modern office enhanced with specialty finishes and premium materials for a high-end look.',
       category: 'Specialty Finish',
       image: project4
     },
     {
       id: 5,
-      title: 'Project 5',
-      description: 'Description of your project',
+      title: 'Luxury Corridor & Salon',
+      description: 'A spacious salon and corridor area featuring elegant detailing and a custom paint concept.',
       category: 'Custom Paint',
       image: project5
     },
     {
       id: 6,
-      title: 'Project 6',
-      description: 'Description of your project',
+      title: 'Living Room Makeover',
+      description: 'A bright and inviting living room redesigned with smooth color transitions and refined textures.',
       category: 'Room Project',
       image: project6
     },
     {
-        id: 7,
-        title: 'Project 7',
-        description: 'Description of your project',
-        category: 'Room Project',
-        image: project7
-      },
-      {
-        id: 8,
-        title: 'Project 8',
-        description: 'Description of your project',
-        category: 'Room Project',
-        image: project8
-      },
-      {
-        id: 9,
-        title: 'Project 9',
-        description: 'Description of your project',
-        category: 'Room Project',
-        image: project9
-      }
+      id: 7,
+      title: 'Entrance Door Project',
+      description: 'A detailed entrance renovation that highlights craftsmanship and balanced color coordination.',
+      category: 'Room Project',
+      image: project7
+    },
+    {
+      id: 8,
+      title: 'Contemporary Salon Area',
+      description: 'A stylish salon space that combines comfort, elegance, and modern interior finishing touches.',
+      category: 'Room Project',
+      image: project8
+    },
+    {
+      id: 9,
+      title: 'Bathroom Cabinet Finish',
+      description: 'A clean, functional bathroom cabinet design showcasing precision refinishing and modern aesthetic appeal.',
+      category: 'Room Project',
+      image: project9
+    }
   ];
 
   return (
