@@ -3,8 +3,6 @@ import './Contact.css';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 
-
-
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -16,7 +14,9 @@ function Contact() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -25,34 +25,39 @@ function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-  
-    // Send email to YOU (notification)
-    emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_NOTIFY!,
-      formData,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
-    );
-    
-    emailjs.send(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID!,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_REPLY!,
-      formData,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY!
-    )
-    
-    // Send auto reply to USER
-      .then(() => setIsSubmitted(true))
-      .catch((err) => console.error('Email send failed:', err));
+
+    const serviceID = 'service_lflzuwo';
+    const templateID = 'template_two1jpt'; // ✅ Your actual template ID
+    const publicKey = 'IXjc_exI7fo9vr7zK';
+
+    // Send email to YOU (notification) and auto-reply to user
+    emailjs
+      .send(serviceID, templateID, formData, publicKey)
+      .then(() => {
+        console.log('✅ Email sent successfully');
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          projectType: '',
+          message: ''
+        });
+      })
+      .catch((err) => {
+        console.error('❌ Email send failed:', err);
+        alert('Something went wrong while sending your message. Please try again.');
+      });
   };
-  
 
   return (
     <section id="contact" className="contact">
       <div className="container">
         <h2 className="section-title">Get In Touch</h2>
-        <p className="section-subtitle">Ready to transform your furniture? Let's discuss your project!</p>
-        
+        <p className="section-subtitle">
+          Ready to transform your furniture? Let's discuss your project!
+        </p>
+
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-card">
@@ -60,13 +65,13 @@ function Contact() {
               <h3>Phone</h3>
               <p>(03) 447 984</p>
             </div>
-            
+
             <div className="info-card">
               <div className="info-icon"><FaEnvelope /></div>
               <h3>Email</h3>
               <p>sarahbashir2005@gmail.com</p>
             </div>
-            
+
             <div className="info-card">
               <div className="info-icon"><FaMapMarkerAlt /></div>
               <h3>Location</h3>
@@ -80,7 +85,7 @@ function Contact() {
                 ✓ Thank you! We'll be in touch soon.
               </div>
             )}
-            
+
             <div className="form-group">
               <label htmlFor="name">Name *</label>
               <input
