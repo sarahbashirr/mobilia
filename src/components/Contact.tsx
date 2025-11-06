@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './Contact.css';
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import emailjs from 'emailjs-com';
 
 
@@ -25,19 +25,16 @@ function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    emailjs.send(
-      'service_lflzuwo',
-      'template_two1jpt', 
-      formData,
-      'IXjc_exI7fo9vr7zK'
-    )
-    .then(() => {
-      setIsSubmitted(true);
-    })
-    .catch((error) => {
-      console.error('Email send failed:', error);
-    });
+  
+    // Send email to YOU (notification)
+    emailjs.send('service_lflzuwo', 'template_owner_notify', formData, 'IXjc_exI7fo9vr7zK');
+  
+    // Send auto reply to USER
+    emailjs.send('service_lflzuwo', 'template_autoreply', formData, 'IXjc_exI7fo9vr7zK')
+      .then(() => setIsSubmitted(true))
+      .catch((err) => console.error('Email send failed:', err));
   };
+  
 
   return (
     <section id="contact" className="contact">
