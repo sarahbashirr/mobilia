@@ -51,16 +51,18 @@ function Contact() {
         console.log('📩 Message sent to owner successfully');
 
         // 2️⃣ Send auto reply to user (must include user_email variable)
-        return emailjs.send(
-          serviceID,
-          autoReplyTemplate,
-          {
-            to_name: formData.name,
-            to_email: formData.email, // must match variable name in your EmailJS template
-            projectType: formData.projectType
-          },
-          publicKey
-        );
+        // 2️⃣ Send auto reply to user
+return emailjs.send(
+  serviceID,
+  autoReplyTemplate,
+  {
+    to_name: formData.name,        // matches {{to_name}}
+    user_email: formData.email,    // ✅ Change this to match your template
+    reply_to: formData.email,      // often needed for auto-replies
+    project_type: formData.projectType  // use snake_case if template does
+  },
+  publicKey
+);
       })
       .then(() => {
         console.log('✅ Auto-reply sent successfully');
